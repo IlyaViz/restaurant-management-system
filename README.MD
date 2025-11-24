@@ -89,7 +89,6 @@
 
 ### Restaurant Management
 
-![Restaurant Management]
 ![Restaurant Management](docs/restaurant_screen.png)
 
 ### Main Page
