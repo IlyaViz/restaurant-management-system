@@ -23,12 +23,14 @@
 ## Development Setup
 
 1. Clone repository:
+
    ```bash
    git clone https://github.com/yourusername/restaurant-app
    cd restaurant-app
    ```
 
 2. Create `.env` file in `/backend` with required secrets:
+
    ```env
    POSTGRES_PASSWORD=your_postgres_password
    POSTGRES_USER=your_postgres_user
@@ -39,6 +41,7 @@
    ```
 
 3. Start development environment:
+
    ```bash
    docker-compose -f docker-compose.dev.yml up --build
    ```
@@ -50,12 +53,14 @@
 ## Production Deployment
 
 1. Set up `.env` with extra secrets:
-    ```env
-    DOMAIN=yourdomain.com
-    SECRET_KEY=your_secret_key
-    ```
+
+   ```env
+   DOMAIN=yourdomain.com
+   SECRET_KEY=your_secret_key
+   ```
 
 2. Deploy:
+
    ```bash
    docker-compose -f docker-compose.prod.yml up --build
    ```
@@ -63,3 +68,44 @@
 3. Access application:
    - Frontend: https://yourdomain.com
    - Backend: https://yourdomain.com/backend
+
+## Screenshots
+
+### Login & Registration
+
+| Register Page                              | Login Page                           |
+| ------------------------------------------ | ------------------------------------ |
+| ![Register Page](docs/register_screen.png) | ![Login Page](docs/login_screen.png) |
+
+### Product Management
+
+| Product Creation                               | Product Editing                           |
+| ---------------------------------------------- | ----------------------------------------- |
+| ![Product Creation](docs/product_creation.png) | ![Product Editing](docs/product_edit.png) |
+
+### User Management
+
+![User Management](docs/user_screen.png)
+
+### Restaurant Management
+
+![Restaurant Management]
+![Restaurant Management](docs/restaurant_screen.png)
+
+### Main Page
+
+![Main Page](docs/main_screen.png)
+
+### Order Management
+
+![Order Management](docs/order_screen.png)
+
+### Order Participation
+
+![Order Participation](docs/order_participation.png)
+
+### Kitchen Management
+
+| Kitchen Orders                          | Auto Button Update (finish)                          |
+| --------------------------------------- | ---------------------------------------------------- |
+| ![Kitchen Management](docs/kitchen.png) | ![Kitchen Auto Button Update](docs/finish_order.png) |
