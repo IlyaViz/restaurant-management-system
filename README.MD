@@ -25,8 +25,8 @@
 1. Clone repository:
 
    ```bash
-   git clone https://github.com/yourusername/restaurant-app
-   cd restaurant-app
+   git clone https://github.com/IlyaViz/restaurant-management-system
+   cd restaurant-management-system
    ```
 
 2. Create `.env` file in `/backend` with required secrets:
