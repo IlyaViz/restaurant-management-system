@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { login, register } from "../../api/authApi";
+import { login, register, fetchMe, refreshToken, logout } from "../../api/authApi";
 
 export const loginThunk = createAsyncThunk(
   "auth/login",
@@ -9,7 +9,7 @@ export const loginThunk = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const registerThunk = createAsyncThunk(
@@ -20,5 +20,38 @@ export const registerThunk = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
+);
+
+export const fetchMeThunk = createAsyncThunk(
+  "auth/fetchMe",
+  async (token, { rejectWithValue }) => {
+    try {
+      return await fetchMe(token);
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const refreshTokenThunk = createAsyncThunk(
+  "auth/refreshToken",
+  async (_, { rejectWithValue }) => {
+    try {
+      return await refreshToken();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const logoutThunk = createAsyncThunk(
+  "auth/logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      return await logout();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
 );

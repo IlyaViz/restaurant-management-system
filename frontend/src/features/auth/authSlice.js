@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginThunk, registerThunk } from "./authThunk";
+import {
+  loginThunk,
+  registerThunk,
+  fetchMeThunk,
+  refreshTokenThunk,
+  logoutThunk,
+} from "./authThunk";
 
 const initialState = {
   username: null,
@@ -20,7 +26,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      state.id = null;
       state.username = null;
       state.token = null;
       state.role = null;
@@ -33,10 +38,7 @@ const authSlice = createSlice({
         state.loginStatus.error = null;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
-        state.id = action.payload.id;
-        state.username = action.payload.username;
-        state.token = action.payload.token;
-        state.role = action.payload.role;
+        state.token = action.payload.access;
         state.loginStatus.loading = false;
       })
       .addCase(loginThunk.rejected, (state, action) => {
@@ -48,12 +50,27 @@ const authSlice = createSlice({
         state.registerStatus.loading = true;
         state.registerStatus.error = null;
       })
-      .addCase(registerThunk.fulfilled, (state, action) => {
+      .addCase(registerThunk.fulfilled, (state) => {
         state.registerStatus.loading = false;
       })
       .addCase(registerThunk.rejected, (state, action) => {
         state.registerStatus.loading = false;
         state.registerStatus.error = action.payload;
+      })
+
+      .addCase(fetchMeThunk.fulfilled, (state, action) => {
+        state.username = action.payload.username;
+        state.role = action.payload.role;
+      })
+
+      .addCase(refreshTokenThunk.fulfilled, (state, action) => {
+        state.token = action.payload.access;
+      })
+
+      .addCase(logoutThunk.fulfilled, (state) => {
+        state.username = null;
+        state.token = null;
+        state.role = null;
       });
   },
 });

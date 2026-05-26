@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { loginThunk } from "./authThunk";
+import { loginThunk, fetchMeThunk } from "./authThunk";
 import FIELD_TYPE from "../../enums/fieldType";
 import Form from "../../components/Form";
 
@@ -31,10 +31,11 @@ const LoginForm = () => {
 
   const onFormSubmit = async (data) => {
     try {
-      await dispatch(loginThunk(data)).unwrap();
+      const { access } = await dispatch(loginThunk(data)).unwrap();
+      await dispatch(fetchMeThunk(access)).unwrap();
 
       navigate("/");
-    } catch (error) {
+    } catch {
       console.error("Login failed (no navigate applied)");
     }
   };

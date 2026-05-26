@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import StaffPage from "./pages/StaffPage";
+import AuthInitializer from "./components/AuthInitializer";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthInitializer>
+      <RouterProvider router={router} />
+    </AuthInitializer>
+  );
 };
 
 export default App;

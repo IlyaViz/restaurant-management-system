@@ -1,8 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { persistStore } from "redux-persist";
 import { combineReducers } from "redux";
-import { persistedAuthReducer } from "./persistedReducers";
 import { logout } from "../features/auth/authSlice";
+import authReducer from "../features/auth/authSlice";
 import customerMenuReducer from "../features/customer-menu/customerMenuSlice";
 import customerOrderReducer from "../features/customer-order/customerOrderSlice";
 import toastReducer from "../features/toast/toastSlice";
@@ -12,7 +11,7 @@ import userManagementReducer from "../features/user-management/userManagementSli
 import restaurantManagementReducer from "../features/restaurant-management/restaurantManagementSlice";
 
 const appReducer = combineReducers({
-  auth: persistedAuthReducer,
+  auth: authReducer,
   customerMenu: customerMenuReducer,
   customerOrder: customerOrderReducer,
   kitchen: kitchenReducer,
@@ -37,10 +36,6 @@ export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
-      },
+      serializableCheck: false,
     }),
 });
-
-export const persistor = persistStore(store);

@@ -137,13 +137,15 @@ AUTH_USER_MODEL = "account.User"
 # REST Framework settings
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
     "EXCEPTION_HANDLER": "common.exception_handler.exception_handler",
 }
 
 # CORS settings
 DOMAIN = os.environ.get("DOMAIN")
+
+CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [f"https://{DOMAIN}", "http://127.0.0.1:5173"]
 
@@ -163,3 +165,9 @@ if DOMAIN:
 
 # CSRF settings
 CSRF_TRUSTED_ORIGINS = [f"https://{DOMAIN}"]
+
+# Simple JWT settings
+SIMPLE_JWT = {
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+}
